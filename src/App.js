@@ -1,6 +1,11 @@
+import React, {ReactDOM} from "react";
+import Item from "./components/Item";
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
-    <div className="App flex justify-center items-center">
+    <div className="App">
+      <Navbar></Navbar>
       <h1>App</h1>
     </div>
   );
