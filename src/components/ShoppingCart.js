@@ -15,9 +15,9 @@ export default function ShoppingCart({ itemsInCart }) {
         </thead>
         <tbody>
           {/* row 1 */}
-          {itemsInCart.map((item) =>
+          {itemsInCart.map((item, index) =>
           (
-            <tr>
+            <tr key={index}>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
@@ -27,13 +27,13 @@ export default function ShoppingCart({ itemsInCart }) {
                   </div>
                   <div>
                     <div className="font-bold">{item.name}</div>
-                    <div className="text-sm opacity-50">{item.description}</div>
+                    <div className="text-sm opacity-50">{item.price}</div>
                   </div>
                 </div>
               </td>
               <td>{item.quantity}</td>
               <th>
-                <button className="btn btn-error btn-xs">remove</button>
+                <button id={`remove-${index}`} className="btn btn-error btn-xs">remove</button>
               </th>
             </tr>
           )

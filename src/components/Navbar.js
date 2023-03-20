@@ -1,6 +1,3 @@
-import Shop from "../Shop"
-import ShoppingCart from "./ShoppingCart"
-
 export default function Navbar({ showItemsBtn, itemsInCart }) {
   return (
     <div className="navbar bg-base-100">

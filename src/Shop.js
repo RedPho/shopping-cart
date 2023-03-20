@@ -5,28 +5,49 @@ import { useState, useEffect } from "react";
 
 function Shop() {
   const [viewCart, setViewCart] = useState(false);
+  const [itemsInCart, setItemsInCart] = useState(
+    [{ name: "first", price: "5$", quantity: "3", image: "" }, { name: "second", quantity: "2", image: "" }]
+  )
 
+  function addItemToCart(item) {
+    setItemsInCart([...itemsInCart, item]);
+  }
+  function removeItemFromCart(index) {
+    let currentCart = [...itemsInCart];
+    currentCart.splice(index, 1);
+    setItemsInCart(currentCart);
+  }
 
-  const testArray = [{ name: "first", description: "first item!" ,quantity: "3", image: "" }, { name: "second", quantity: "2", image: "" }];
-  useEffect(()=> {
+  useEffect(() => {
     let viewCartBtn = document.getElementById("viewCartBtn");
-    viewCartBtn.addEventListener("click", ()=> {
+    let closeCartBtn = document.getElementById("closeCart");
+
+    viewCartBtn.addEventListener("click", () => {
       setViewCart(true);
     })
 
-    let closeCartBtn = document.getElementById("closeCart");
     if (closeCartBtn) {
-      closeCartBtn.addEventListener("click", ()=> {
+      closeCartBtn.addEventListener("click", () => {
         setViewCart(false);
       })
     }
-    
+  })
+
+  useEffect(() => {
+    for (let i = 0; i < itemsInCart.length; i++) {
+      let rmBtn = document.getElementById(`remove-${i}`);
+      if (rmBtn) {
+        rmBtn.addEventListener("click", ()=>{
+          removeItemFromCart(i)
+        })
+      }
+    }
   })
 
   return (
     <div>
-      <Navbar showItemsBtn={true} itemsInCart={testArray}></Navbar>
-      {viewCart && <ShoppingCart itemsInCart={testArray}></ShoppingCart>}
+      <Navbar showItemsBtn={true} itemsInCart={itemsInCart}></Navbar>
+      {viewCart && <ShoppingCart itemsInCart={itemsInCart}></ShoppingCart>}
     </div>
   );
 }
