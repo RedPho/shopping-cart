@@ -31,7 +31,7 @@ export default function ShoppingCart({ itemsInCart }) {
                   </div>
                 </div>
               </td>
-              <td>{item.quantity}</td>
+              <td><button id={`decrement-${index}`}>-</button> {item.quantity} <button id={`increment-${index}`}>+</button></td>
               <th>
                 <button id={`remove-${index}`} className="btn btn-error btn-xs">remove</button>
               </th>

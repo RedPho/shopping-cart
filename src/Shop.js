@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import ShoppingCart from "./components/ShoppingCart";
 import { useState, useEffect } from "react";
+import { func } from "prop-types";
 
 function Shop() {
   const [viewCart, setViewCart] = useState(false);
@@ -16,6 +17,22 @@ function Shop() {
     let currentCart = [...itemsInCart];
     currentCart.splice(index, 1);
     setItemsInCart(currentCart);
+  }
+
+  function incrementItemQuantity(index) {
+    let currentCart = [...itemsInCart];
+    let quantity = parseInt(currentCart[index].quantity);
+    currentCart[index].quantity = quantity + 1;
+    setItemsInCart(currentCart);
+  }
+
+  function decrementItemQuantity(index) {
+    let currentCart = [...itemsInCart];
+    let quantity = parseInt(currentCart[index].quantity);
+    if(quantity > 0) {
+      currentCart[index].quantity = quantity - 1;
+      setItemsInCart(currentCart);
+    }
   }
 
   useEffect(() => {
@@ -36,10 +53,12 @@ function Shop() {
   useEffect(() => {
     for (let i = 0; i < itemsInCart.length; i++) {
       let rmBtn = document.getElementById(`remove-${i}`);
+      let incrementBtn = document.getElementById(`increment-${i}`);
+      let decrementBtn = document.getElementById(`decrement-${i}`);
       if (rmBtn) {
-        rmBtn.addEventListener("click", ()=>{
-          removeItemFromCart(i)
-        })
+        rmBtn.onclick = () => removeItemFromCart(i);
+        incrementBtn.onclick = () => incrementItemQuantity(i);
+        decrementBtn.onclick = () => decrementItemQuantity(i);
       }
     }
   })
