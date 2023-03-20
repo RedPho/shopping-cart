@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-export default function ShoppingCart() {
-
-  const [itemsInCart, setItemsInCart] = useState([]);
-  useEffect(()=> {
-    setItemsInCart([{ name: "first item", quantity: "3", image: "" }, { name: "second item", quantity: "2", image: "" }])
-  })
-
+export default function ShoppingCart({ itemsInCart }) {
 
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto sticky">
       <table className="table w-full">
         {/* head */}
         <thead>
           <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
             <th>Item</th>
             <th>Quantity</th>
-            <th></th>
+            <th className="flex flex-row-reverse"><button id="closeCart" className="btn btn-error btn-xs">X</button></th>
           </tr>
         </thead>
         <tbody>
@@ -29,11 +18,6 @@ export default function ShoppingCart() {
           {itemsInCart.map((item) =>
           (
             <tr>
-              <th>
-                <label>
-                  <input type="checkbox" className="checkbox" />
-                </label>
-              </th>
               <td>
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
@@ -43,7 +27,7 @@ export default function ShoppingCart() {
                   </div>
                   <div>
                     <div className="font-bold">{item.name}</div>
-                    <div className="text-sm opacity-50">item description</div>
+                    <div className="text-sm opacity-50">{item.description}</div>
                   </div>
                 </div>
               </td>
@@ -53,8 +37,7 @@ export default function ShoppingCart() {
               </th>
             </tr>
           )
-          )};
-
+          )}
         </tbody>
       </table>
     </div>
