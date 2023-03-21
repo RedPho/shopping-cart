@@ -1,18 +1,21 @@
 import React from "react";
 import Navbar from "./components/Navbar";
 import ShoppingCart from "./components/ShoppingCart";
+import Item from "./components/Item";
+import LightIcon from "./sun-svgrepo-com.svg";
+import DarkIcon from "./moon-svgrepo-com.svg";
 import { useState, useEffect } from "react";
-import { func } from "prop-types";
 
 function Shop() {
   const [viewCart, setViewCart] = useState(false);
   const [itemsInCart, setItemsInCart] = useState(
-    [{ name: "first", price: "5$", quantity: "3", image: "" }, { name: "second", quantity: "2", image: "" }]
+    [{ name: "first", price: 5, quantity: 3, image: "" }, { name: "second", price: 8, quantity: 2, image: "" }]
   )
 
   function addItemToCart(item) {
     setItemsInCart([...itemsInCart, item]);
   }
+
   function removeItemFromCart(index) {
     let currentCart = [...itemsInCart];
     currentCart.splice(index, 1);
@@ -21,16 +24,15 @@ function Shop() {
 
   function incrementItemQuantity(index) {
     let currentCart = [...itemsInCart];
-    let quantity = parseInt(currentCart[index].quantity);
-    currentCart[index].quantity = quantity + 1;
+    currentCart[index].quantity += 1;
     setItemsInCart(currentCart);
   }
 
   function decrementItemQuantity(index) {
     let currentCart = [...itemsInCart];
-    let quantity = parseInt(currentCart[index].quantity);
+    let quantity = currentCart[index].quantity;
     if(quantity > 0) {
-      currentCart[index].quantity = quantity - 1;
+      currentCart[index].quantity -= 1;
       setItemsInCart(currentCart);
     }
   }
@@ -38,7 +40,6 @@ function Shop() {
   useEffect(() => {
     let viewCartBtn = document.getElementById("viewCartBtn");
     let closeCartBtn = document.getElementById("closeCart");
-
     viewCartBtn.addEventListener("click", () => {
       setViewCart(true);
     })
@@ -65,8 +66,9 @@ function Shop() {
 
   return (
     <div>
-      <Navbar showItemsBtn={true} itemsInCart={itemsInCart}></Navbar>
+      <Navbar showItemsBtn={true} itemsInCart={itemsInCart} lightIcon={LightIcon} darkIcon={DarkIcon}></Navbar>
       {viewCart && <ShoppingCart itemsInCart={itemsInCart}></ShoppingCart>}
+      
     </div>
   );
 }
