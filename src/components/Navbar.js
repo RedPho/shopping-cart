@@ -9,17 +9,19 @@ export default function Navbar({ showItemsBtn, itemsInCart , darkIcon, lightIcon
   function toggleTheme() {
     if (theme == "dark") {
       setTheme("light");
+      htmlTag.setAttribute("data-theme", "light");
     }
-    else {
+    else if (theme == "light") {
       setTheme("dark");
+      htmlTag.setAttribute("data-theme", "dark");
     }
-    htmlTag.setAttribute("data-theme", theme);
+    
   }
 
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a href="/" className="btn btn-ghost normal-case text-xl">Home</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">ARTAI.TFX</a>
         <a href="/Shop" className="btn btn-ghost normal-case text-xl">Shop</a>
       </div>
       <div className="flex-none">
@@ -43,7 +45,7 @@ export default function Navbar({ showItemsBtn, itemsInCart , darkIcon, lightIcon
           </div>
         }
       </div>
-      <button onClick={toggleTheme} className="btn btn-ghost btn-circle "><img className="object-contain w-5" src={theme == "light" ? darkIcon : lightIcon} alt="theme icon"></img></button>
+      <button onClick={toggleTheme} id={"themeBtn"} className="btn btn-ghost btn-circle "><img className="object-contain w-5" src={theme == "light" ? lightIcon : darkIcon} alt="theme icon"></img></button>
     </div>
   )
 }

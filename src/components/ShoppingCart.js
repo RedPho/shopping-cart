@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 export default function ShoppingCart({ itemsInCart }) {
 
   return (
-    <div className="overflow-x-auto sticky">
+    <div className="sticky top-0 z-10">
+    <div className="overflow-x-auto">
       <table className="table w-full">
         {/* head */}
         <thead>
           <tr>
-            <th>Item</th>
+            <th >Item</th>
             <th>Quantity</th>
             <th>Subtotal</th>
             <th></th>
@@ -24,7 +25,7 @@ export default function ShoppingCart({ itemsInCart }) {
                 <div className="flex items-center space-x-3">
                   <div className="avatar">
                     <div className="mask mask-squircle w-12 h-12">
-                      <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                      <img src={item.image} alt="item image" />
                     </div>
                   </div>
                   <div>
@@ -35,6 +36,7 @@ export default function ShoppingCart({ itemsInCart }) {
               </td>
               <td><button id={`decrement-${index}`}>-</button> {item.quantity} <button id={`increment-${index}`}>+</button></td>
               <td>{item.quantity*item.price}$</td>
+              <td></td>
               <th>
                 <button id={`remove-${index}`} className="btn btn-error btn-xs">remove</button>
               </th>
@@ -43,7 +45,8 @@ export default function ShoppingCart({ itemsInCart }) {
           )}
         </tbody>
       </table>
-      <div className="alert flex-row justify-center">Total: {itemsInCart.reduce((oldValue, item) => { return oldValue + item.price * item.quantity; }, 0)}$ <button className="btn btn-primary btn-sm">Checkout</button></div>
+    </div>
+    <div className="alert flex-row justify-center">Total: {itemsInCart.reduce((oldValue, item) => { return oldValue + item.price * item.quantity; }, 0)}$ <button className="btn btn-primary btn-sm">Checkout</button></div>
     </div>
   )
 }
