@@ -21,8 +21,8 @@ export default function Navbar({ showItemsBtn, itemsInCart , darkIcon, lightIcon
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <Link to="/" className="btn btn-ghost normal-case text-xl">ARTAI.TFX</Link>
-        <Link to="/Shop" className="btn btn-ghost normal-case text-xl">Shop</Link>
+        <Link to="./" className="btn btn-ghost normal-case text-xl">ARTAI.TFX</Link>
+        <Link to="./Shop" className="btn btn-ghost normal-case text-xl">Shop</Link>
       </div>
       <div className="flex-none">
         {showItemsBtn &&
