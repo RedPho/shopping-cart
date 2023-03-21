@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 
 
 export default function Navbar({ showItemsBtn, itemsInCart , darkIcon, lightIcon}) {
@@ -15,14 +16,13 @@ export default function Navbar({ showItemsBtn, itemsInCart , darkIcon, lightIcon
       setTheme("dark");
       htmlTag.setAttribute("data-theme", "dark");
     }
-    
   }
 
   return (
     <div className="navbar bg-base-100">
       <div className="flex-1">
-        <a href="/#/" className="btn btn-ghost normal-case text-xl">ARTAI.TFX</a>
-        <a href="/#/Shop" className="btn btn-ghost normal-case text-xl">Shop</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">ARTAI.TFX</Link>
+        <Link to="/Shop" className="btn btn-ghost normal-case text-xl">Shop</Link>
       </div>
       <div className="flex-none">
         {showItemsBtn &&
