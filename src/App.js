@@ -5,7 +5,6 @@ import DarkIcon from "./moon-svgrepo-com.svg";
 import GithubBlack from "./github-mark.svg"
 import GithubWhite from "./github-mark-white.svg"
 import { useEffect, useState } from "react";
-import { func } from "prop-types";
 
 function App() {
   const [theme, setTheme] = useState("dark");
